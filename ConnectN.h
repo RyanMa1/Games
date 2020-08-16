@@ -23,6 +23,7 @@ namespace ConnectNGame {
         Move getValidMove() const;
         const Player& getCurrentPlayer() const;
         Player& getCurrentPlayer();
+        bool checkPieces();
         bool isGameOver() const;
         bool gameWon() const;
         bool horzWin() const;

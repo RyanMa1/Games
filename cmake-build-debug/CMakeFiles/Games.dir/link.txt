@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Games.dir/main.cpp.o CMakeFiles/Games.dir/ConnectN.cpp.o CMakeFiles/Games.dir/Player.cpp.o CMakeFiles/Games.dir/Board.cpp.o CMakeFiles/Games.dir/Move.cpp.o  -o Games.exe -Wl,--out-implib,libGames.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

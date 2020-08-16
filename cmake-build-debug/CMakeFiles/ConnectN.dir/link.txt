@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/ConnectN.dir/main.cpp.o CMakeFiles/ConnectN.dir/ConnectN.cpp.o CMakeFiles/ConnectN.dir/Player.cpp.o CMakeFiles/ConnectN.dir/Board.cpp.o CMakeFiles/ConnectN.dir/Move.cpp.o  -o ConnectN.exe -Wl,--out-implib,libConnectN.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

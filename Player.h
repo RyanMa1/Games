@@ -16,17 +16,18 @@ namespace ConnectNGame {
         Player(Player& rhs);
         const std::string &getName() const;
         char getPiece() const;
-
+        bool checkInput();
         void changeCurrentName(std::string newName);
         void changeCurrentPiece(char newPiece);
-        bool checkPiece(std::string stringPiece);
+        bool checkPiece();
         bool checkName(std::string nameCheck);
         static int playerCount;
-
+        std::string tmp;
     private:
         std::string name;
         char piece;
         std::string stringPiece;
+        
 
 
     };

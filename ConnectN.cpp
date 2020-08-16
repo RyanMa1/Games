@@ -6,63 +6,59 @@
 #include "Move.h"
 #include "Board.h"
 #include "ConnectN.h"
-
+#include "Player.h"
 ConnectNGame::ConnectN::ConnectN(int columnSize, int rowSize, int winCondition) :
         board(columnSize, rowSize), players(2), playerTurn(-1), winCondition(winCondition)
 {
-
 }
-
-
 
 void ConnectNGame::ConnectN::play() {
     determineStartingPlayer();
-    checkUser();
+ 
+//-------------------------- old ------------------------------------------
 
-    while (checkUser() == 1 || checkUser() == 0) {
-        if (checkUser() == 0) {
-            std::cout << "You cannot have the same name!" << std::endl;
-            std::cout << "Enter your new name: ";
-            std::string name;
-            std::cin >> name;
-            if (getCurrentPlayer().getName() != name) {
-                players[1].changeCurrentName(name);
-                break;
-            } else {
-                continue;
-            }
-        }
-        else if (checkUser() == 1) {
-            std::cout << "You cannot have the same piece!" << std::endl;
-            std::cout << "Enter your new piece: ";
-            char newPiece;
-            std::cin >> newPiece;
-            if (getCurrentPlayer().getPiece() != newPiece) {
-                players[1].changeCurrentPiece(newPiece);
-                break;
-            }
+//check both char pieces
+    bool askAgain;
+    do{
+        askAgain = checkPieces();
+    }while(askAgain);
 
-        }
-    }
-    if (checkUser() == 2) {
-        while (true) {
-            //show the game state
-            board.display();
+    while (true) {
+           //show the game state
+        board.display();
             //got move
-            Move move = getValidMove();
+        Move move = getValidMove();
             //made move
-            move.make(board);
-            if (isGameOver()) {
-                break;
-            }
-            changeTurn();
+        move.make(board);
+        if (isGameOver()) {
+            break;
+        }
+        changeTurn();
 
         }
         board.display();
         declareResults();
-    }
+        std::cout << "wtf jeeves you hoe" << std::endl;
+    
 }
+bool ConnectNGame::ConnectN::checkPieces() {
+    char player1Piece = players[0].getPiece();
+    char player2Piece = players[1].getPiece();
+    bool askAgain = false;
+    if(player1Piece == player2Piece){
+        // std::cout << "stuck in here" << std::endl;
+        std::cout << "Please don't pick same character as " << players[0].getName() << std::endl;
+        if(!players[1].checkPiece()){
+            players[1].changeCurrentPiece(players[1].tmp[0]);
 
+        }
+        return true;
+    }
+    askAgain = false;
+    return askAgain;
+    
+    return askAgain;
+}
 void ConnectNGame::ConnectN::determineStartingPlayer(){
     playerTurn = 0;
 }
@@ -244,6 +240,7 @@ void ConnectNGame::ConnectN::declareResults() const {
     if(tie()){
         std::cout<< "Tie Game!" << std::endl;
     }else{
+        std::cout << "in here" << std::endl;
         std::cout << getCurrentPlayer().getName() << " won the game!" << std::endl;
     }
 
